@@ -1,67 +1,69 @@
-{% comment %} se il chekbox è true vediamo la barra {% endcomment %}
-{%  if section.settings['show-announcement'] %}   <div class="announcement-bar">
-    <div class="announcement-bar-left-section">
-      {%- if section.settings.image2 != blank -%}
-        <img
-          width="40"
-          height="40"
-          loading="lazy"
-          src="{{ section.settings.image2 | image_url }}"
-        >
-      {%- else -%}
-        <img
-          width="40"
-          height="40"
-          loading="lazy"
-          src="{{ 'a.png' | asset_url }}"
-        >
-      {%- endif -%}
-      {%- if section.settings.image != blank -%}
-        <img
-          width="35"
-          height="35"
-          loading="lazy"
-          src="{{ section.settings.image | image_url }}"
-        >
-      {%- else -%}
-        <img
-          width="35"
-          height="35"
-          loading="lazy"
-          src="{{ 'b.png' | asset_url }}"
-        >
-      {%- endif -%}
-    </div>
-    <div class="announcement-bar-right-section">
-      <ul class="announcement-bar-inner-list">
-        {%- if section.blocks.size == 0 -%}
-          <li>
-            <a href="#">Help</a>
-          </li>
-
-          {% if shop.customer_accounts_enabled %}
-            {% if customer %}
-              <li>
-                <a href="/account">Account</a>
-              </li>
-
-            {% else %}
-              <li>
-                <a href="/account/login">Sign in</a>
-              </li>
-            {% endif %}
-          {% endif %}
-
+{%- if section.settings.show_announcement -%}
+  <section>
+    <div class="announcement-bar">
+      <div class="announcement-bar-left-section">
+        {%- if section.settings.image2 != blank -%}
+          <img
+            width="40"
+            height="40"
+            loading="lazy"
+            src="{{ section.settings.image2 | image_url }}"
+          >
         {%- else -%}
-          {% for block in section.blocks %}
-            <li>
-              <a href="{{ block.settings.link }}">{{ block.settings.text | escape }}</a>
-            </li>
-          {% endfor %}
+          <img
+            width="40"
+            height="40"
+            loading="lazy"
+            src="{{ 'a.png' | asset_url }}"
+          >
         {%- endif -%}
-      </ul>
+        {%- if section.settings.image != blank -%}
+          <img
+            width="35"
+            height="35"
+            loading="lazy"
+            src="{{ section.settings.image | image_url }}"
+          >
+        {%- else -%}
+          <img
+            width="35"
+            height="35"
+            loading="lazy"
+            src="{{ 'b.png' | asset_url }}"
+          >
+        {%- endif -%}
+      </div>
+      <div class="announcement-bar-right-section">
+        <ul class="announcement-bar-inner-list">
+          {%- if section.blocks.size == 0 -%}
+            <li>
+              <a href="#">Help</a>
+            </li>
+
+            {% if shop.customer_accounts_enabled %}
+              {% if customer %}
+                <li>
+                  <a href="/account">Account</a>
+                </li>
+
+              {% else %}
+                <li>
+                  <a href="/account/login">Sign in</a>
+                </li>
+              {% endif %}
+            {% endif %}
+
+          {%- else -%}
+            {% for block in section.blocks %}
+              <li>
+                <a href="{{ block.settings.link }}">{{ block.settings.text | escape }}</a>
+              </li>
+            {% endfor %}
+          {%- endif -%}
+        </ul>
+      </div>
     </div>
-  </div>
+  </section>
 
   <style>
     .announcement-bar {
@@ -71,10 +73,11 @@
       ;
     }
   </style>
-{% endif %} 
 
-{% comment %} con i settings rendiamo modificabile la section da shopify editor {% endcomment %}
-{% schema  %} 
+  <script></script>
+{%- endif -%}
+
+{% schema %}
 {
   "name": "Announcement bar",
   "settings": [
@@ -129,4 +132,5 @@
       ]
     }
   ]
-} {% endschema %}
+}
+{% endschema %}
