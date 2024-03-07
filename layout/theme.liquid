@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+
+    <head>
+    {% render 'pagefly-head' %}
+    {{content_for_header}}
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+
+    </head>
+    <body>
+
+        {% comment %} come richiamare una section creata {% endcomment %}
+        {% section 'announcement-bar' %}
+
+        <main id="main" role="main">
+            {% comment %} Linka il contenuto dalla cartella templates{% endcomment %}
+            {{content_for_layout}}
+        </main>
+    </body>
+</html>
