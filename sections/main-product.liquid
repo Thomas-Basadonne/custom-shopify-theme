@@ -5,6 +5,7 @@
         width="600"
         height="600"
         loading="lazy"
+        id="image"
         src="{{ product.featured_image | image_url}}"
       >
     </div>
@@ -57,6 +58,11 @@
       "id": "text_color",
       "label": "Text",
       "default": "#000000"
+    },{
+      "type": "image_picker",
+      "id": "image",
+      "label": "image",
+      "info": "400 x 120px .png recommended"
     }
   ],
   "presets": [
